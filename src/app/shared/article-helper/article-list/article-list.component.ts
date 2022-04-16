@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectService } from '../../services/subject.service';
 
 @Component({
   selector: 'app-article-list',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleListComponent implements OnInit {
 
-  constructor() { }
+  subjects: any;
+
+  constructor(private subjectService: SubjectService) { }
 
   ngOnInit(): void {
+    this.loadSubjects();  
   }
 
+onDelete(id : number){
+  this.subjectService.deleteSubject(id).subscribe(data => {
+    this.loadSubjects();
+  });
+}
+
+
+loadSubjects(){
+  this.subjectService.getAllSubjects().subscribe(x => {
+    this.subjects = x;
+  });
+}
 }

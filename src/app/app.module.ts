@@ -9,6 +9,9 @@ import { HomeComponent } from './template/home/home.component';
 import { ArticleListComponent } from './shared/article-helper/article-list/article-list.component';
 import { ArticleMetaComponent } from './shared/article-helper/article-meta/article-meta.component';
 import { ArticleDetaiilComponent } from './article-detaiil/article-detaiil.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddArticleComponent } from './add-article/add-article.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +20,15 @@ import { ArticleDetaiilComponent } from './article-detaiil/article-detaiil.compo
     HomeComponent,
     ArticleListComponent,
     ArticleMetaComponent,
-    ArticleDetaiilComponent
+    ArticleDetaiilComponent,
+    AddArticleComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
