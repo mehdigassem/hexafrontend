@@ -11,9 +11,16 @@ export class ResponseService {
 
   constructor(private http: HttpClient) { }
 
+  incrimentlikes(id:any) {
+    return this.http.get<any>(`${URL}/response/increlike/${id}`);
+  }
 
   getAllResponse() {
     return this.http.get<any>(`${URL}/response/showallbynb`);
+  }
+
+  getAllBySubjectId(id:any) {
+    return this.http.get<any>(`${URL}/response/getallbysubjectid/${id}`);
   }
 
   addResponse(response:any) {

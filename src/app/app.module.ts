@@ -12,6 +12,10 @@ import { ArticleDetaiilComponent } from './article-detaiil/article-detaiil.compo
 import { HttpClientModule } from '@angular/common/http';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddDialogComponent } from './modal/add-dialog/add-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddDialogResComponent } from './modal/add-dialog-res/add-dialog-res.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +25,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ArticleListComponent,
     ArticleMetaComponent,
     ArticleDetaiilComponent,
-    AddArticleComponent
+    AddArticleComponent,
+    AddDialogComponent,
+    AddDialogResComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

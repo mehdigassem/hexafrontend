@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { cpuUsage } from 'process';
 import { ResponseService } from '../shared/services/response.service';
 
 @Component({
@@ -8,14 +10,28 @@ import { ResponseService } from '../shared/services/response.service';
 })
 export class ArticleDetaiilComponent implements OnInit {
 
-  responses : any;
+  responses : any[] = [];
+  subjectId: any;
+  
 
-  constructor(private responseService: ResponseService) { }
+  constructor(private responseService: ResponseService,private route: ActivatedRoute,private cdr: ChangeDetectorRef) {
+   }
 
   ngOnInit(): void {
-    this.responseService.getAllResponse().subscribe(data => {
-      this.responses = data;
-    });
+    this.subjectId=this.route.snapshot.paramMap.get('id');
+    this.loadResponse();
+    
   }
+  onIncr(id : number){
+    this.responseService.incrimentlikes(id).subscribe(data => {
+      this.loadResponse();
+      this.cdr.detectChanges();
+    });
+}
 
+loadResponse(){
+  this.responseService.getAllBySubjectId(this.subjectId).subscribe(data => {
+    this.responses = data;
+  });
+}
 }
